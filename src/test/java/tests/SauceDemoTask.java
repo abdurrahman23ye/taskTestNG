@@ -11,17 +11,21 @@ import utulities.*;
 
 import java.io.IOException;
 
-import static utulities.ItemAssertDatas.*;
+import static utulities.ChoosingRandomItemForAddToCart.item1text;
+import static utulities.ChoosingRandomItemForAddToCart.item2text;
+import static utulities.ChoosingRandomItemForAddToCart.totalPrice;
+
 
 public class SauceDemoTask extends TestBaseReport {
 
     SauceDemoMainPage sauceDemoMainPage=new SauceDemoMainPage();
-    ItemAssertDatas itemAssertDatas=new ItemAssertDatas();
+    ChoosingRandomItemForAddToCart choosingRandomItemForAddToCart=new ChoosingRandomItemForAddToCart();
     CheckoutPage checkoutPage=new CheckoutPage();
     OverviewPage overviewPage= new OverviewPage();
     CompletePage completePage= new CompletePage();
 
-    @Test(groups = "task")
+
+    @Test()
     public void sauceDemoTask() throws IOException {
 
         extentTest=extentReports.
@@ -49,11 +53,7 @@ public class SauceDemoTask extends TestBaseReport {
         extentTest.info("User clicks 'login' button");
 
 
-        itemAssertDatas.itemAssertDatas();
-
-        sauceDemoMainPage.firstProductAddToCartButton.click();
-        sauceDemoMainPage.secondProductAddToCartButton.click();
-
+        choosingRandomItemForAddToCart.choosingRandomItem();
         extentTest.info("User chooses random two product and adds them to cart");
 
 
@@ -84,7 +84,7 @@ public class SauceDemoTask extends TestBaseReport {
         extentTest.info("User clicks 'continue' button");
 
 
-        double firstItemPrice=Double.valueOf(overviewPage.
+        double firstItemPrice=Double.parseDouble(overviewPage.
                 firstAddedItemPrice.getText().replace("$",""));
 
         double secondItemPrice=Double.valueOf(overviewPage.
@@ -96,7 +96,6 @@ public class SauceDemoTask extends TestBaseReport {
         Assert.assertEquals(item1text,overviewPage.firstAddedItem.getText());
         Assert.assertEquals(item2text,overviewPage.secondAddedItem.getText());
         Assert.assertEquals(totalPrice, actualResult, 0.0);
-
 
         extentTest.info("User verifies added products and total price");
 

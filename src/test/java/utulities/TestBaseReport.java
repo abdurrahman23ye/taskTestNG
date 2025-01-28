@@ -32,7 +32,7 @@ public class TestBaseReport {
         extentReports.setSystemInfo("Browser", ConfigReader.getProperty("browser")); // chrome, firefox
         extentReports.setSystemInfo("Automation Engineer", "Abdurrahman Ören");
         extentHtmlReporter.config().setDocumentTitle("Sauce Demo Task");
-        extentHtmlReporter.config().setReportName("Complete an opder task");
+        extentHtmlReporter.config().setReportName("Complete an order task");
     }
     // Her test methodundan sonra eğer testte hata varsa, ekran görüntüsü alıp rapora ekliyor
     @AfterMethod(alwaysRun = true)
